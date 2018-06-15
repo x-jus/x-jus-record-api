@@ -1,5 +1,6 @@
 package br.jus.trf2.xjus.record.api;
 
+import java.util.Date;
 import java.util.List;
 
 import com.crivano.swaggerservlet.ISwaggerMethod;
@@ -8,10 +9,10 @@ import com.crivano.swaggerservlet.ISwaggerRequest;
 import com.crivano.swaggerservlet.ISwaggerResponse;
 
 public interface IXjusRecordAPI {
-	public class Id implements ISwaggerModel {
+	public class RefId implements ISwaggerModel {
 	}
 
-	public class Date implements ISwaggerModel {
+	public class RefDate implements ISwaggerModel {
 	}
 
 	public class Object implements ISwaggerModel {
@@ -55,7 +56,7 @@ public interface IXjusRecordAPI {
 
 	public class Reference implements ISwaggerModel {
 		public String id;
-		public String date;
+		public Date date;
 	}
 
 	public class Error implements ISwaggerModel {
@@ -63,7 +64,7 @@ public interface IXjusRecordAPI {
 	}
 
 	public class AllReferencesGetRequest implements ISwaggerRequest {
-		public String last;
+		public String lastid;
 		public String max;
 	}
 
@@ -77,7 +78,8 @@ public interface IXjusRecordAPI {
 	}
 
 	public class ChangedReferencesGetRequest implements ISwaggerRequest {
-		public String last;
+		public Date lastdate;
+		public String lastid;
 		public String max;
 	}
 

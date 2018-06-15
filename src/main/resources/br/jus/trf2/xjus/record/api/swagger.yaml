@@ -20,7 +20,7 @@ paths:
       description: Retorna lista de IDs que devem ser indexadas. A lista será ordenada alfabeticamente pela ID e, caso seja informado o parâmetro id, a lista conterá apenas id posteriores.
       tags: [index]
       parameters:
-        - $ref: "#/parameters/last"
+        - $ref: "#/parameters/lastid"
         - $ref: "#/parameters/max"
       responses:
         200:
@@ -42,7 +42,8 @@ paths:
       description: Retorna lista de IDs que devem ser indexadas. A lista será ordenada pela data de inclusão ou modificação e, caso seja informado o parâmetro dt, a lista conterá apenas as datas posteriores. O valor retornado em last será fornecido na próxima chamada, para dar continuidade à atualização do índice.
       tags: [index]
       parameters:
-        - $ref: "#/parameters/last"
+        - $ref: "#/parameters/lastdate"
+        - $ref: "#/parameters/lastid"
         - $ref: "#/parameters/max"
       responses:
         200:
@@ -72,7 +73,7 @@ paths:
             type: object
             properties:
               id:
-                $ref: "#/definitions/Id"
+                $ref: "#/definitions/RefId"
               status:
                 $ref: "#/definitions/Status"
               acl:
@@ -107,12 +108,19 @@ parameters:
     description: String que identifica um item, normalmente uma concatenação do tipo do item seguida de ':' e o número do identificar do item formatado com zeros à esquerda.
     required: true
     type: string
-  last:
-    name: last
+  lastid:
+    name: lastid
     in: query
-    description: String que deve representar um identificador, ou outra maneira qualquer de recuperar o processamento de onde foi parado. No método changed-references este identificador conterá a date seguida de um ponto e vírgula e depois a id.
+    description: String que deve representar um identificador, ou outra maneira qualquer de recuperar o processamento de onde foi parado.
     required: false
     type: string
+  lastdate:
+    name: lastdate
+    in: query
+    description: String que representa uma data para recuperar o processamento de onde foi parado.
+    required: false
+    type: string
+    format: date-time
   max:
     name: max
     in: query
@@ -121,13 +129,14 @@ parameters:
     type: string
 
 definitions:
-  Id:
+  RefId:
     type: string
     description: String que identifica um item, normalmente uma concatenação do tipo do item seguida de ':' e o número do identificar do item formatado com zeros à esquerda.
     example: documento:000000000123
     
-  Date:
+  RefDate:
     type: string
+    format: date-time
     description: String que representa a data de um item, é importante que a ordenação alfabética também ordene por data.
     example: 2018-06-30T23:01:02.000
     
@@ -213,9 +222,9 @@ definitions:
     type: object
     properties:
       id:
-        $ref: "#/definitions/Id"
+        $ref: "#/definitions/RefId"
       date:
-        $ref: "#/definitions/Date"
+        $ref: "#/definitions/RefDate"
     example:
       id: documento:000000000123
 
