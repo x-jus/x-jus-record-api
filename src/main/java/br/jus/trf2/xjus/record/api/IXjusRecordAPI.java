@@ -1,5 +1,6 @@
 package br.jus.trf2.xjus.record.api;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,109 +10,106 @@ import com.crivano.swaggerservlet.ISwaggerRequest;
 import com.crivano.swaggerservlet.ISwaggerResponse;
 
 public interface IXjusRecordAPI {
-	public class RefId implements ISwaggerModel {
+	public static class RefId implements ISwaggerModel {
 	}
 
-	public class RefDate implements ISwaggerModel {
+	public static class RefDate implements ISwaggerModel {
 	}
 
-	public class Object implements ISwaggerModel {
+	public static class Object implements ISwaggerModel {
 	}
 
-	public class Acl implements ISwaggerModel {
+	public static class Acl implements ISwaggerModel {
 	}
 
-	public class Refresh implements ISwaggerModel {
+	public static class Refresh implements ISwaggerModel {
 	}
 
-	public class Last implements ISwaggerModel {
+	public static class Last implements ISwaggerModel {
 	}
 
-	public class Url implements ISwaggerModel {
+	public static class Url implements ISwaggerModel {
 	}
 
-	public class Code implements ISwaggerModel {
+	public static class Code implements ISwaggerModel {
 	}
 
-	public class Title implements ISwaggerModel {
+	public static class Title implements ISwaggerModel {
 	}
 
-	public class Content implements ISwaggerModel {
+	public static class Content implements ISwaggerModel {
 	}
 
-	public class Field implements ISwaggerModel {
+	public static class Field implements ISwaggerModel {
 		public String name;
 		public String kind;
 		public String value;
 	}
 
-	public class Facet implements ISwaggerModel {
+	public static class Facet implements ISwaggerModel {
 		public String name;
 		public String kind;
 		public String value;
 	}
 
-	public class Status implements ISwaggerModel {
+	public static class Status implements ISwaggerModel {
 	}
 
-	public class Reference implements ISwaggerModel {
+	public static class Reference implements ISwaggerModel {
 		public String id;
 		public Date date;
 	}
 
-	public class Error implements ISwaggerModel {
+	public static class Error implements ISwaggerModel {
 		public String errormsg;
 	}
 
-	public class AllReferencesGetRequest implements ISwaggerRequest {
-		public String lastid;
-		public String max;
-	}
-
-	public class AllReferencesGetResponse implements ISwaggerResponse {
-		public List<Reference> list;
-	}
-
 	public interface IAllReferencesGet extends ISwaggerMethod {
-		public void run(AllReferencesGetRequest req,
-				AllReferencesGetResponse resp) throws Exception;
-	}
+		public static class Request implements ISwaggerRequest {
+			public String lastid;
+			public String max;
+		}
 
-	public class ChangedReferencesGetRequest implements ISwaggerRequest {
-		public Date lastdate;
-		public String lastid;
-		public String max;
-	}
+		public static class Response implements ISwaggerResponse {
+			public List<Reference> list = new ArrayList<>();
+		}
 
-	public class ChangedReferencesGetResponse implements ISwaggerResponse {
-		public List<Reference> list;
+		public void run(Request req, Response resp, XjusRecordAPIContext ctx) throws Exception;
 	}
 
 	public interface IChangedReferencesGet extends ISwaggerMethod {
-		public void run(ChangedReferencesGetRequest req,
-				ChangedReferencesGetResponse resp) throws Exception;
-	}
+		public static class Request implements ISwaggerRequest {
+			public Date lastdate;
+			public String lastid;
+			public String max;
+		}
 
-	public class RecordIdGetRequest implements ISwaggerRequest {
-		public String id;
-	}
+		public static class Response implements ISwaggerResponse {
+			public List<Reference> list = new ArrayList<>();
+		}
 
-	public class RecordIdGetResponse implements ISwaggerResponse {
-		public String id;
-		public String status;
-		public String acl;
-		public String refresh;
-		public String url;
-		public String code;
-		public String title;
-		public String content;
-		public List<Field> field;
-		public List<Facet> facet;
+		public void run(Request req, Response resp, XjusRecordAPIContext ctx) throws Exception;
 	}
 
 	public interface IRecordIdGet extends ISwaggerMethod {
-		public void run(RecordIdGetRequest req, RecordIdGetResponse resp)
-				throws Exception;
+		public static class Request implements ISwaggerRequest {
+			public String id;
+		}
+
+		public static class Response implements ISwaggerResponse {
+			public String id;
+			public String status;
+			public String acl;
+			public String refresh;
+			public String url;
+			public String code;
+			public String title;
+			public String content;
+			public List<Field> field = new ArrayList<>();
+			public List<Facet> facet = new ArrayList<>();
+		}
+
+		public void run(Request req, Response resp, XjusRecordAPIContext ctx) throws Exception;
 	}
 
 }
