@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   version: "1.0.0"
-  title: Xjus - Record - API
+  title: XjusRecordAPI
   description: Micro-serviço para obter dados para busca textual
 
 basePath: /sigaex/apis/x-jus/v1
