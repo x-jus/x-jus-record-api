@@ -100,7 +100,28 @@ paths:
           description: Error ocurred
           schema:
             $ref: "#/definitions/Error"
-
+            
+  /record/{id}/content:
+    get:
+      description: Obtem conteúdo de um documento específico como string.
+      tags: [index]
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: "#/definitions/RefId"
+              content:
+                $ref: "#/definitions/Content"
+        500:
+          description: Error ocurred
+          schema:
+            $ref: "#/definitions/Error"
+            
 parameters:
   id:
     name: id

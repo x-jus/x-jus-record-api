@@ -112,4 +112,17 @@ public interface IXjusRecordAPI {
 		public void run(Request req, Response resp, XjusRecordAPIContext ctx) throws Exception;
 	}
 
+	public interface IRecordIdContentGet extends ISwaggerMethod {
+		public static class Request implements ISwaggerRequest {
+			public String id;
+		}
+
+		public static class Response implements ISwaggerResponse {
+			public String id;
+			public String content;
+		}
+
+		public void run(Request req, Response resp, XjusRecordAPIContext ctx) throws Exception;
+	}
+
 }
