@@ -82,10 +82,12 @@ public interface IXjusRecordAPI {
 			public Date lastdate;
 			public String lastid;
 			public String max;
+			public String cursor;
 		}
 
 		public static class Response implements ISwaggerResponse {
 			public List<Reference> list = new ArrayList<>();
+			public String cursor;
 		}
 
 		public void run(Request req, Response resp, XjusRecordAPIContext ctx) throws Exception;

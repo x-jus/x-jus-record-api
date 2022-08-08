@@ -45,6 +45,7 @@ paths:
         - $ref: "#/parameters/lastdate"
         - $ref: "#/parameters/lastid"
         - $ref: "#/parameters/max"
+        - $ref: "#/parameters/cursor"
       responses:
         200:
           description: Successful response
@@ -55,6 +56,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/Reference"
+              cursor:
+                type: string
         500:
           description: Error ocurred
           schema:
@@ -147,6 +150,12 @@ parameters:
     in: query
     description: Número máximo de IDs que pode ser retornado em uma consulta.
     required: true
+    type: string
+  cursor:
+    name: cursor
+    in: query
+    description: String que representa um ponto para recuperar o processamento de onde foi parado. É necessário, em especial, para o caso da indexação pela data, pois quando a data não muda, precisamos saber qual é a ID do último registro indexado, e quando se trata de um agregador de várias entidades num único índice, não podemos usar simplesmente a última ID retornada, pois ela só reflete a posição dentro de um determindado conjunto, e não do todo. Quando o cursor não for informado, será utilizado apenas o lastId.
+    required: false
     type: string
 
 definitions:
