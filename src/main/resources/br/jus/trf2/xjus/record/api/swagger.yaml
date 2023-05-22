@@ -91,6 +91,8 @@ paths:
                 $ref: "#/definitions/Title"
               content:
                 $ref: "#/definitions/Content"
+              dateref:
+                $ref: "#/definitions/DateRef"
               field:
                 type: array
                 items:
@@ -208,6 +210,11 @@ definitions:
     description: Texto que deve ser indexado para a busca.
     type: string      
     example: Batatinha quando nasce espalha a rama pelo chão. menininha quando dorme põe a mão no coração. O bolso furou e o papai caiu no chão. Mamãe que é mais querida ficou no coração.
+
+  DateRef:
+    description: Data do documento para ordenar resultados de busca
+    type: string      
+    example: 2023-05-22
 
   Field:
     type: object

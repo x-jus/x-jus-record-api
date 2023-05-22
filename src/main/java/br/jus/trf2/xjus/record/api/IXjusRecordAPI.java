@@ -107,6 +107,7 @@ public interface IXjusRecordAPI {
 			public String code;
 			public String title;
 			public String content;
+			public String dateref;
 			public List<Field> field = new ArrayList<>();
 			public List<Facet> facet = new ArrayList<>();
 		}
